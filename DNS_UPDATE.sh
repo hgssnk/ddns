@@ -5,7 +5,7 @@ USERID="ここにお名前.comのID"
 PASSWORD="ここにお名前.comのパスワード"
 HOSTNAME="ここにホスト名"
 DOMNAME="ここにドメイン名"
-LOG_FILE="ログを吐き出すディレクトリを絶対パスで指定してください"
+LOG_FILE="ログを吐き出すディレクトリを絶対パスで指定"
 HOST="ここに「ホスト名.ドメイン名」を入力"
 
 # 定数
@@ -36,6 +36,16 @@ if [ "$gip" != "$domip" ]; then
   $UPDATE_FLG="TRUE"
 else
   echo "$MESSAGE"
+fi
+
+# ログ出力
+if [ $UPDATE_FLG = 1 ]; then
+  {
+    echo "DATE    $DATE"
+    echo "BEFORE  $domip"
+    echo "AFTER   $gip"
+    echo ""
+  } >> ${LOG_FILE}/DNS_UPDATE.log
 fi
 
 exit 0

@@ -9,7 +9,7 @@ LOG_FILE="ログを吐き出すディレクトリを絶対パスで指定"
 HOST="ここに「ホスト名.ドメイン名」を入力"
 
 # 定数
-UPDATE_FLG="FALSE"
+UPDATE_FLG="0"
 DATE=$(date '+%Y-%m-%d %H:%M:%S')
 MESSAGE="IPは更新の必要がありませんでした。"
 
@@ -33,7 +33,7 @@ if [ "$gip" != "$domip" ]; then
     echo "."
   } > DDNS_INPUT_FILE.txt
   openssl s_client -connect ddnsclient.onamae.com:65010 -quiet < DDNS_INPUT_FILE.txt
-  $UPDATE_FLG="TRUE"
+  $UPDATE_FLG="1"
 else
   echo "$MESSAGE"
 fi
